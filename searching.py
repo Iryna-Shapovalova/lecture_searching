@@ -22,25 +22,37 @@ def read_data(file_name, field):
         return None
 
 
-def linear_search(list_of_numbers, number):
-    list_of_idxs = []
-    for idx, element in enumerate(list_of_numbers):
-        if element == number:
-            list_of_idxs.append(idx)
+def pattern_search(sequence, pattern):
+    set_of_idxs = set()
+    pattern_length = len(pattern)
+    for idx in range(0, len(sequence) - pattern_length + 1):
+        pattern_similarity = 0
+        for idx_pattern, pattern_element in enumerate(pattern):
+            if sequence[idx + idx_pattern] == pattern_element:
+                pattern_similarity = pattern_similarity + 1
+            else:
+                break
+        if pattern_similarity == pattern_length:
+            set_of_idxs.add(idx + pattern_length// 2 - 1)
         else:
-            pass
-    distionary_of_foud_numbers = {"position":list_of_idxs, "count": len(list_of_idxs)}
-    return list_of_idxs
+             pass
+    return set_of_idxs
+
 
 def main():
-    sequential_data = read_data("sequential.json", "unordered_numbers")
+    file_name = "sequential.json"
+    key_of_sequence = "dna_sequence"
+    searched_sequence = "ATA"
+    sequential_data = read_data(file_name, key_of_sequence)
     print(sequential_data)
-    found_numbers_linear = linear_search(sequential_data, 0)
-    print(found_numbers_linear)
+    found_set = pattern_search(sequential_data, searched_sequence)
+    print(found_set)
+
+
 
 if __name__ == '__main__':
     my_list = [1, 2, 5, 7]
-    searched_number = 5
-    found_number = linear_search(my_list, searched_number)
+    searched_number = [5]
+    found_number = pattern_search(my_list, searched_number)
     print(found_number)
 
