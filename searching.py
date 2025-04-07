@@ -29,7 +29,7 @@ def linear_search(list_of_numbers, number):
             list_of_idxs.append(idx)
         else:
             pass
-    distionary_of_foud_numbers = ("position":list_of_idxs, "count": len(list_of_idxs)
+    distionary_of_foud_numbers = {"position":list_of_idxs, "count": len(list_of_idxs)}
     return list_of_idxs
 
 def main():
